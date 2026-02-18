@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f2040;
+  --color-navy-700: #152d54;
+  --color-navy-600: #1b3a68;
+  --color-navy-500: #24508c;
+  --color-steel-100: #f0f2f5;
+  --color-steel-200: #d8dde5;
+  --color-steel-300: #b8c0cc;
+  --color-steel-400: #8892a2;
+  --color-steel-500: #6b7585;
+  --color-steel-600: #4a5263;
+  --color-steel-700: #363d4d;
+  --color-orange-500: #e8650a;
+  --color-orange-600: #d45a00;
+  --color-orange-400: #f5892e;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #1a1a2e;
+  font-family: var(--font-sans);
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Sticky CTA pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: var(--color-orange-500);
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: -1;
+}
