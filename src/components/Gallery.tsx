@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const categories = [
   { id: "all", label: "Tümü" },
+  { id: "evsel-tamirat", label: "Evsel Tesisat" },
   { id: "kazan-yangin", label: "Kazan Dairesi & Yangın" },
   { id: "dogalgaz-kalorifer", label: "Doğalgaz & Kalorifer" },
   { id: "pompa-altyapi", label: "Pompa & Altyapı" },
-  { id: "evsel-tamirat", label: "Evsel Tamirat" },
 ];
 
 interface GalleryItem {
@@ -19,8 +19,16 @@ interface GalleryItem {
   src: string;
 }
 
-// Gerçek fotoğraflar — kategorilere göre sıralı
+// Gerçek fotoğraflar — Evsel Tesisat önce gelecek şekilde sıralı
 const galleryItems: GalleryItem[] = [
+  // === EVSEL TAMİRAT (23 adet) ===
+  ...Array.from({ length: 23 }, (_, i) => ({
+    id: 69 + i,
+    category: "evsel-tamirat",
+    title: `Evsel Tesisat & Tamirat #${i + 1}`,
+    description: "Konut ve iş yeri tesisat bakım ve onarım hizmeti",
+    src: `/images/evsel-tamirat-${String(i + 1).padStart(2, "0")}.jpeg`,
+  })),
   // === KAZAN DAİRESİ & YANGIN (23 adet) ===
   ...Array.from({ length: 23 }, (_, i) => ({
     id: i + 1,
@@ -44,14 +52,6 @@ const galleryItems: GalleryItem[] = [
     title: `Pompa & Altyapı Çalışması #${i + 1}`,
     description: "Pompa motor imalatı ve altyapı çalışması",
     src: `/images/pompa-altyapi-${String(i + 1).padStart(2, "0")}.jpeg`,
-  })),
-  // === EVSEL TAMİRAT (23 adet) ===
-  ...Array.from({ length: 23 }, (_, i) => ({
-    id: 69 + i,
-    category: "evsel-tamirat",
-    title: `Evsel Tesisat & Tamirat #${i + 1}`,
-    description: "Konut ve iş yeri tesisat bakım ve onarım hizmeti",
-    src: `/images/evsel-tamirat-${String(i + 1).padStart(2, "0")}.jpeg`,
   })),
 ];
 
@@ -115,20 +115,45 @@ export default function Gallery() {
   }, [lightboxIndex]);
 
   return (
-    <section id="galeri" className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeri" className="py-20 md:py-28 bg-navy-900 relative overflow-hidden">
+      {/* Arka plan desen */}
+      <div className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-navy-600/30 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Bölüm başlığı */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-orange-500/10 text-orange-600 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
-            <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-            GALERİ
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded-full px-4 py-1.5 text-sm font-semibold mb-5">
+            <span className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
+            TAMAMLANAN PROJELERİMİZ
           </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">
-            Tamamlanan <span className="text-orange-500">Projelerimiz</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
+            30 Yılda <span className="text-orange-500">1000+</span> Başarılı Proje
           </h2>
-          <p className="text-steel-500 text-lg max-w-2xl mx-auto">
-            Başarıyla tamamladığımız projelerimizden örnekler.
+          <p className="text-steel-300 text-lg max-w-2xl mx-auto leading-relaxed">
+            Her projede kalite ve güvenliği ön planda tutarak İstanbul&apos;un dört bir yanında gerçekleştirdiğimiz çalışmalardan örnekler.
           </p>
+
+          {/* İstatistik şeridi */}
+          <div className="flex flex-wrap justify-center gap-6 mt-8">
+            {[
+              { count: "23", label: "Evsel Tesisat" },
+              { count: "23", label: "Kazan & Yangın" },
+              { count: "22", label: "Doğalgaz & Kalorifer" },
+              { count: "23", label: "Pompa & Altyapı" },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2">
+                <span className="text-orange-400 font-bold text-lg">{stat.count}</span>
+                <span className="text-steel-300 text-sm">{stat.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Filtreler */}
@@ -137,15 +162,15 @@ export default function Gallery() {
             <button
               key={cat.id}
               onClick={() => handleFilterChange(cat.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeFilter === cat.id
-                  ? "bg-navy-900 text-white shadow-lg"
-                  : "bg-steel-100 text-steel-600 hover:bg-steel-200"
+                  ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30 scale-105"
+                  : "bg-white/10 text-steel-300 hover:bg-white/20 hover:text-white border border-white/10"
               }`}
             >
               {cat.label}
               {activeFilter === cat.id && (
-                <span className="ml-2 bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                <span className="ml-2 bg-white/20 text-white text-xs px-1.5 py-0.5 rounded-full">
                   {filtered.length}
                 </span>
               )}
@@ -154,12 +179,12 @@ export default function Gallery() {
         </div>
 
         {/* Galeri grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {visible.map((item, index) => (
             <button
               key={item.id}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer bg-steel-200"
+              className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer bg-navy-800 border border-white/5 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10"
             >
               <Image
                 src={item.src}
@@ -170,10 +195,19 @@ export default function Gallery() {
               />
 
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/70 transition-all duration-300 flex items-end p-4">
+              <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/75 transition-all duration-300 flex items-end p-4">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
                   <h4 className="text-white font-semibold text-sm">{item.title}</h4>
                   <p className="text-steel-300 text-xs mt-1">{item.description}</p>
+                </div>
+              </div>
+
+              {/* Zoom ikonu */}
+              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                  </svg>
                 </div>
               </div>
             </button>
@@ -185,11 +219,11 @@ export default function Gallery() {
           <div className="text-center mt-10">
             <button
               onClick={() => setVisibleCount((prev) => prev + ITEMS_PER_PAGE)}
-              className="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white px-8 py-3 rounded-xl font-semibold transition-colors"
+              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl font-semibold transition-all hover:shadow-lg hover:shadow-orange-500/30"
             >
               Daha Fazla Göster
-              <span className="text-orange-400 text-sm">
-                ({filtered.length - visibleCount} kalan)
+              <span className="bg-white/20 text-white text-sm px-2 py-0.5 rounded-full">
+                +{filtered.length - visibleCount}
               </span>
             </button>
           </div>
