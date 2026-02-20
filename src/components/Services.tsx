@@ -1,5 +1,27 @@
 const services = [
   {
+    title: "Evsel Su Tesisatı",
+    description:
+      "Konut ve iş yerleri için temiz su, sıcak su ve pis su tesisatı döşeme, bakım ve tamir hizmetleri. Banyo, mutfak ve genel tesisat yenileme.",
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+      </svg>
+    ),
+    keywords: ["su tesisatı", "pis su", "banyo tesisatı", "mutfak tesisatı", "tesisat tamir"],
+  },
+  {
+    title: "Evsel Doğalgaz Tesisatı",
+    description:
+      "Konutlar için İGDAŞ onaylı doğalgaz iç tesisatı, kombi bağlantısı, gaz kaçak tespiti ve periyodik bakım hizmetleri.",
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+      </svg>
+    ),
+    keywords: ["evsel doğalgaz", "kombi bağlantısı", "gaz kaçak tespiti", "İGDAŞ onaylı"],
+  },
+  {
     title: "Endüstriyel Mekanik",
     description:
       "Kazan dairesi montajı, yangın tesisatı, kalorifer sistemleri, havalandırma ve hidrofor daireleri kurulum ve bakım hizmetleri.",
@@ -44,28 +66,6 @@ const services = [
       </svg>
     ),
     keywords: ["poseftik", "foseptik", "yağmur suyu", "atık su", "temiz su"],
-  },
-  {
-    title: "Evsel Su Tesisatı",
-    description:
-      "Konut ve iş yerleri için temiz su, sıcak su ve pis su tesisatı döşeme, bakım ve tamir hizmetleri. Banyo, mutfak ve genel tesisat yenileme.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-      </svg>
-    ),
-    keywords: ["su tesisatı", "pis su", "banyo tesisatı", "mutfak tesisatı", "tesisat tamir"],
-  },
-  {
-    title: "Evsel Doğalgaz Tesisatı",
-    description:
-      "Konutlar için İGDAŞ onaylı doğalgaz iç tesisatı, kombi bağlantısı, gaz kaçak tespiti ve periyodik bakım hizmetleri.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
-      </svg>
-    ),
-    keywords: ["evsel doğalgaz", "kombi bağlantısı", "gaz kaçak tespiti", "İGDAŞ onaylı"],
   },
   {
     title: "Uzman Kaynak İşçiliği",
