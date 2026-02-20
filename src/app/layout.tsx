@@ -80,7 +80,7 @@ export default function RootLayout({
                 "@type": "Person",
                 name: "Ramazan Köse",
               },
-              telephone: "+905321780521",
+              telephone: "+905309711450",
               areaServed: {
                 "@type": "City",
                 name: "İstanbul",

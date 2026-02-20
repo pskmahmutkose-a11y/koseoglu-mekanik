@@ -36,7 +36,7 @@ export default function Contact() {
 
               {/* Phone */}
               <a
-                href="tel:+905321780521"
+                href="tel:+905309711450"
                 className="flex items-center gap-4 p-4 bg-orange-500/5 hover:bg-orange-500/10 rounded-xl transition-colors group mb-4"
               >
                 <div className="w-12 h-12 bg-orange-500 text-white rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
@@ -46,13 +46,13 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-sm text-steel-500">Telefon</div>
-                  <div className="text-lg font-bold text-navy-900">0532 178 05 21</div>
+                  <div className="text-lg font-bold text-navy-900">0530 971 14 50</div>
                 </div>
               </a>
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/905321780521?text=Merhaba%2C%20K%C3%B6seo%C4%9Flu%20Mekanik%27ten%20bilgi%20almak%20istiyorum."
+                href="https://wa.me/905309711450?text=Merhaba%2C%20K%C3%B6seo%C4%9Flu%20Mekanik%27ten%20bilgi%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-[#25D366]/5 hover:bg-[#25D366]/10 rounded-xl transition-colors group mb-4"

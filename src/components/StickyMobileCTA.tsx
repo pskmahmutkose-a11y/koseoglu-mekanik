@@ -16,7 +16,7 @@ export default function StickyMobileCTA() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-navy-900/95 backdrop-blur-md border-t border-navy-700 p-3 flex items-center gap-3">
       <a
-        href="tel:+905321780521"
+        href="tel:+905309711450"
         className="flex-1 pulse-ring relative inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-bold text-sm transition-colors"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -25,7 +25,7 @@ export default function StickyMobileCTA() {
         Hemen Ara
       </a>
       <a
-        href="https://wa.me/905321780521"
+        href="https://wa.me/905309711450"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb855] text-white py-3 px-5 rounded-xl font-bold text-sm transition-colors"
