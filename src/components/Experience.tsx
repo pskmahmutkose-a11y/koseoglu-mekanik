@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const stats = [
   { value: 30, suffix: "+", label: "Yıl Deneyim", description: "Sektörde kesintisiz hizmet" },
@@ -9,11 +9,28 @@ const stats = [
   { value: 7, suffix: "/24", label: "Destek", description: "Kesintisiz teknik destek hattı" },
 ];
 
+// Avoids the React "useLayoutEffect does nothing on the server" warning
+// while still flipping to 0 before the browser paints on the client.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 function useCountUp(target: number, duration: number, start: boolean) {
-  const [count, setCount] = useState(0);
+  // Start from the real value so SSR/no-JS output always shows the final
+  // number (needed for SEO/GEO crawlers). The client swaps to 0 below,
+  // pre-paint, right before animating up once the section is visible.
+  const [count, setCount] = useState(target);
+  const hasAnimated = useRef(false);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!start && !hasAnimated.current) {
+      setCount(0);
+    }
+  }, [start]);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     let startTime: number;
     let animationId: number;
 
@@ -21,9 +38,11 @@ function useCountUp(target: number, duration: number, start: boolean) {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
       if (progress < 1) {
+        setCount(Math.floor(eased * target));
         animationId = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
       }
     };
 
